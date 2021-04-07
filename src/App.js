@@ -2,10 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import WeatherApp from './WeatherApp';
 import { useState } from 'react';
+import ReactTable from "react-table-6";
+import "react-table-6/react-table.css" ;
+
 
 function App() {
     const [data, setData] = useState([]);
-    const [keyword, setKeyword] = useState([]);
+    const [keyword, setKeyword] = useState('');
 
 
     const fetchDate = () => {
@@ -30,12 +33,36 @@ function App() {
     );
 
 
+    const columns = [{
+        Header: 'Name',
+        accessor: 'full_name'
+    },{
+        Header: 'URL',
+        accessor: 'html_url'
+    },{
+        Header: 'Owner',
+        accessor: 'owner.login'
+    }, {
+        id: 'button',
+        sortable: false,
+        filterable: false,
+        width: 100,
+        accessor: 'full_name',
+        Cell: ({value}) => (<button onClick={() => {btnClick(value)}}>Press Me</button>)
+    }]
+
+    const btnClick = (value) => {
+        alert(value);
+    }
+
+
     return (
         <div className="App">
             <WeatherApp />
             <input type="text" onChange={handleChange} />
             <button onClick={fetchDate} value={keyword} >fetch</button>
-            <table><tbody>{tableRows}</tbody></table>
+            <ReactTable data={data} columns={columns} filterable={true} defaultPageSize={10} />
+           
         </div>
     );
 }

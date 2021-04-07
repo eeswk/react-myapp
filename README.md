@@ -90,8 +90,18 @@ test api
  - weather open api
  - github search api
 
-add modules 'react-tiny-virtual-list'
 
+add modules 'react-tiny-virtual-list'
 ```
-import VirtualList from 'react-tiny-virtual-list';
+npm install react-tiny-virtual-list --save
+```
+
+add modules 'react-table'
+```
+npm install react-table
+```
+
+add modules 'react-table-6'
+```
+npm install react-table-6
 ```
